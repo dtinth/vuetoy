@@ -1,4 +1,11 @@
 vuetoy
 ======
 
-Single-file Vue setup with no build tool needed. Ideal for building side-projects.
+Single-file Vue setup with no build tool. Ideal for building side-projects, where you:
+
+- want multiple routes
+- want all your code in a single file
+- prefer not to use any build tool
+- don’t need to support older browsers
+
+View this project on Glitch: https://glitch.com/~vuetoy
