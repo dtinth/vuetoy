@@ -31,7 +31,8 @@
       </template>
     </div>
 
-    <!-- Minimal API for registering components and routes without depending on Vue -->
+    <!-- Minimal API for registering components and routes without depending on Vue. -->
+    <!-- Rationale: We want to put external scripts (including Vue and Vue Router) as further down as possible, since they block page load. -->
     <script>
       var App = {
         routes: [],
@@ -40,23 +41,27 @@
           App.routes.push({ name: routeName, path, component: { template: `#${routeName}-route`, ...component } })
         },
         registerComponent(componentName, options) {
-          App.components.push([componentName, { template: `#${componentName}-template`, ...options }])
+          App.components.push([componentName, { template: `#${componentName}-component`, ...options }])
         },
       }
     </script>
 
-    <!-- ## -->
-    <template id="my-app-template">
+    <!-- ############################################################### -->
+
+    <template id="my-app-component">
       <div class="my-app">
         <p class="nav">
           <router-link to="/">Home page</router-link>
           <router-link to="/foo">Go to Foo</router-link>
           <router-link to="/bar">Go to Bar</router-link>
         </p>
-        <router-view></router-view>
+        <div class="contents">
+          <router-view></router-view>
+        </div>
       </div>
     </template>
     <style>
+      /* We are following `rscss` convention here when defining CSS: https://rscss.io/ */
       .my-app > .nav a {
         color: #039;
         margin-right: 1em;
@@ -68,6 +73,11 @@
       .my-app > .nav a.router-link-exact-active {
         font-weight: bold;
       }
+      .my-app > .contents {
+        border: 1px solid #ccc;
+        padding: 8px;
+        box-shadow: 0 1px 4px #0002;
+      }
     </style>
     <script>
       App.registerComponent('my-app', {
@@ -77,29 +87,34 @@
       })
     </script>
 
-    <!-- ## -->
+    <!-- ############################################################### -->
+
     <template id="home-route">
-      <div>Home page</div>
+      <div>This is the home page</div>
     </template>
     <script>
       App.registerRoute('home', '/', {})
     </script>
 
-    <!-- ## -->
+    <!-- ############################################################### -->
+
     <template id="foo-route">
-      <div>Foo</div>
+      <div>This is Foo</div>
     </template>
     <script>
       App.registerRoute('foo', '/foo', {})
     </script>
 
-    <!-- ## -->
+    <!-- ############################################################### -->
+
     <template id="bar-route">
-      <div>Bar</div>
+      <div>This is Bar</div>
     </template>
     <script>
       App.registerRoute('bar', '/bar', {})
     </script>
+
+    <!-- ############################################################### -->
 
     <!-- Load the Vue dependency -->
     <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
@@ -107,6 +122,7 @@
 
     <!-- Start the runtime -->
     <script>
+      Vue.config.productionTip = false
       App.components.forEach(([name, options]) => Vue.component(name, options))
       App.router = new VueRouter({ routes: App.routes })
       App.vm = new Vue({ el: '#main', router: App.router })
