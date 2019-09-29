@@ -60,8 +60,15 @@
         </div>
       </div>
     </template>
+    <script>
+      App.registerComponent('my-app', {
+        data() {
+          return { count: 0 }
+        }
+      })
+    </script>
     <style>
-      /* We are following `rscss` convention here when defining CSS: https://rscss.io/ */
+      /* We are following `rscss` convention here: https://rscss.io/ */
       .my-app > .nav a {
         color: #039;
         margin-right: 1em;
@@ -79,13 +86,6 @@
         box-shadow: 0 1px 4px #0002;
       }
     </style>
-    <script>
-      App.registerComponent('my-app', {
-        data() {
-          return { count: 0 }
-        }
-      })
-    </script>
 
     <!-- ############################################################### -->
 
