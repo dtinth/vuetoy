@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vuetoy</title>
+    <title>vuetoy</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preload" href="https://unpkg.com/vue@2.6.10/dist/vue.js" as="script">
     <link rel="preload" href="https://unpkg.com/vue-router@3.1.3/dist/vue-router.js" as="script">
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+    </style>
   </head>
   <body>
-    <!-- Layout and loading indicator -->
+    <!-- Based on vuetoy, a single-file Vue setup with no build tool: https://github.com/dtinth/vuetoy -->
+
+    <!-- Application shell with loading indicator -->
     <div id="main">
-      <h1>Vuetoy</h1>
+      <h1>vuetoy</h1>
+
+      <!-- Loading indicator -->
       <div v-if="false">
         Loading…
       </div>
+
+      <!-- The main app -->
       <template>
         <my-app></my-app>
       </template>
     </div>
 
-    <!-- Basic JS boilerplate -->
+    <!-- Minimal API for registering components and routes without depending on Vue -->
     <script>
       var App = {
         routes: [],
@@ -36,14 +47,28 @@
 
     <!-- ## -->
     <template id="my-app-template">
-      <div>
-        <p>
+      <div class="my-app">
+        <p class="nav">
+          <router-link to="/">Home page</router-link>
           <router-link to="/foo">Go to Foo</router-link>
           <router-link to="/bar">Go to Bar</router-link>
         </p>
         <router-view></router-view>
       </div>
     </template>
+    <style>
+      .my-app > .nav a {
+        color: #039;
+        margin-right: 1em;
+        text-decoration: none;
+      }
+      .my-app > .nav a:hover {
+        color: #48f;
+      }
+      .my-app > .nav a.router-link-exact-active {
+        font-weight: bold;
+      }
+    </style>
     <script>
       App.registerComponent('my-app', {
         data() {
