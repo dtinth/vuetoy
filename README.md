@@ -10,4 +10,4 @@ Single-file Vue setup with no build tool. Ideal for building side-projects, wher
 
 **View/remix this project on Glitch:** https://glitch.com/~vuetoy
 
-
+**GitHub repo:** https://github.com/dtinth/vuetoy

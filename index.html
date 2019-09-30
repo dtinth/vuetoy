@@ -22,7 +22,7 @@
 
       <!-- Loading indicator -->
       <div v-if="false">
-        Loading…
+        Loading app…
       </div>
 
       <!-- The main app -->
@@ -90,11 +90,30 @@
     <!-- ############################################################### -->
 
     <template id="home-route">
-      <div>This is the home page</div>
+      <div v-html="contents"></div>
     </template>
     <script>
-      App.registerRoute('home', '/', {})
+      App.registerRoute('home', '/', {
+        data() {
+          return { contents: 'Loading information...' }
+        },
+        async mounted() {
+          try {
+            const response = await fetch('https://api.github.com/repos/dtinth/vuetoy/readme', {
+              headers: { Accept: 'application/vnd.github.v3.html' }
+            })
+            const responseText = await response.text()
+            this.contents = 'About this project:' + responseText
+          } catch (e) {
+            this.contents = 'Failed to load information (check console log)'
+            console.error(e)
+          }
+        }
+      })
     </script>
+    <style>
+      a.anchor { display: none; }
+    </style>
 
     <!-- ############################################################### -->
 
