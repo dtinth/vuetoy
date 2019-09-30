@@ -90,7 +90,7 @@
     <!-- ############################################################### -->
 
     <template id="home-route">
-      <div v-html="contents"></div>
+      <div class="markdown-content" v-html="contents"></div>
     </template>
     <script>
       App.registerRoute('home', '/', {
@@ -105,14 +105,17 @@
             const responseText = await response.text()
             this.contents = 'About this project:' + responseText
           } catch (e) {
-            this.contents = 'Failed to load information (check console log)'
+            this.contents = 'Failed to load project information (check console log)'
             console.error(e)
           }
         }
       })
     </script>
     <style>
-      a.anchor { display: none; }
+      /* GitHub’s README API renders header with `a.anchor` link.
+       * It does not work with Vue Router and so is hidden.
+       * This is just to show the functionality of vuetoy; feel free to remove it when you implement your app. */
+      .markdown-content a.anchor { display: none; }
     </style>
 
     <!-- ############################################################### -->
