@@ -2,14 +2,24 @@
 <html lang="en">
   <head>
     <title>vuetoy</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preload" href="https://unpkg.com/vue@2.6.10/dist/vue.js" as="script">
-    <link rel="preload" href="https://unpkg.com/vue-router@3.1.3/dist/vue-router.js" as="script">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="preload"
+      href="https://unpkg.com/vue@2.6.10/dist/vue.js"
+      as="script"
+    />
+    <link
+      rel="preload"
+      href="https://unpkg.com/vue-router@3.1.3/dist/vue-router.js"
+      as="script"
+    />
     <style>
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
       }
     </style>
   </head>
@@ -38,11 +48,18 @@
         routes: [],
         components: [],
         registerRoute(routeName, path, component) {
-          App.routes.push({ name: routeName, path, component: { template: `#${routeName}-route`, ...component } })
+          App.routes.push({
+            name: routeName,
+            path,
+            component: { template: `#${routeName}-route`, ...component }
+          })
         },
         registerComponent(componentName, options) {
-          App.components.push([componentName, { template: `#${componentName}-component`, ...options }])
-        },
+          App.components.push([
+            componentName,
+            { template: `#${componentName}-component`, ...options }
+          ])
+        }
       }
     </script>
 
@@ -100,13 +117,17 @@
         },
         async mounted() {
           try {
-            const response = await fetch('https://api.github.com/repos/dtinth/vuetoy/readme', {
-              headers: { Accept: 'application/vnd.github.v3.html' }
-            })
+            const response = await fetch(
+              'https://api.github.com/repos/dtinth/vuetoy/readme',
+              {
+                headers: { Accept: 'application/vnd.github.v3.html' }
+              }
+            )
             const responseText = await response.text()
             this.contents = 'About this project:' + responseText
           } catch (e) {
-            this.contents = 'Failed to load project information (check console log)'
+            this.contents =
+              'Failed to load project information (check console log)'
             console.error(e)
           }
         }
@@ -116,7 +137,9 @@
       /* GitHub’s README API renders header with `a.anchor` link.
        * It does not work with Vue Router and so is hidden.
        * This is just to show the functionality of vuetoy; feel free to remove it when you implement your app. */
-      .markdown-content a.anchor { display: none; }
+      .markdown-content a.anchor {
+        display: none;
+      }
     </style>
 
     <!-- ############################################################### -->
@@ -125,12 +148,15 @@
       <div>
         <strong>How to use this?</strong>
         <p>
-          All of this starter app’s code lives in this <code>index.html</code> file,
-          so go ahead and copy this page’s source code into a new HTML file.
+          All of this starter app’s code lives in this
+          <code>index.html</code> file, so go ahead and copy this page’s source
+          code into a new HTML file.
         </p>
         <p>
           You can also
-          <a href="https://glitch.com/edit/#!/remix/vuetoy">remix this project on Glitch</a>
+          <a href="https://glitch.com/edit/#!/remix/vuetoy"
+            >remix this project on Glitch</a
+          >
         </p>
       </div>
     </template>

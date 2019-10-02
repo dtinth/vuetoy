@@ -1,5 +1,4 @@
-vuetoy
-======
+# vuetoy
 
 Single-file Vue setup with no build tool. Ideal for building side-projects, where you:
 
