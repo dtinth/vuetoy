@@ -52,6 +52,7 @@
       <div class="my-app">
         <p class="nav">
           <router-link to="/">Home page</router-link>
+          <router-link to="/usage">Usage</router-link>
           <router-link to="/foo">Go to Foo</router-link>
           <router-link to="/bar">Go to Bar</router-link>
         </p>
@@ -117,6 +118,25 @@
        * This is just to show the functionality of vuetoy; feel free to remove it when you implement your app. */
       .markdown-content a.anchor { display: none; }
     </style>
+
+    <!-- ############################################################### -->
+
+    <template id="usage-route">
+      <div>
+        <strong>How to use this?</strong>
+        <p>
+          All of this starter app’s code lives in this <code>index.html</code> file,
+          so go ahead and copy this page’s source code into a new HTML file.
+        </p>
+        <p>
+          You can also
+          <a href="https://glitch.com/edit/#!/remix/vuetoy">remix this project on Glitch</a>
+        </p>
+      </div>
+    </template>
+    <script>
+      App.registerRoute('usage', '/usage', {})
+    </script>
 
     <!-- ############################################################### -->
 
