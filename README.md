@@ -7,6 +7,7 @@ Single-file Vue setup with no build tool. Ideal for building side-projects, wher
 - prefer not to use any build tool
 - don’t need to support older browsers
 
-**View/remix this project on Glitch:** https://glitch.com/~vuetoy
-
-**GitHub repo:** https://github.com/dtinth/vuetoy
+|                       |                                         |
+| --------------------- | --------------------------------------- |
+| **Glitch project**    | https://glitch.com/~vuetoy              |
+| **GitHub repository** | https://github.com/dtinth/dtinth/vuetoy |
